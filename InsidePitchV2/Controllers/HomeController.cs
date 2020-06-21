@@ -23,7 +23,7 @@ namespace InsidePitchV2.Controllers
         public IActionResult Test()
         {
             //_DbContext.Products.Add(new Product() {Name = "TestProduct", Price = 150 });
-            //_DbContext.SaveChanges();
+            _DbContext.SaveChanges();
             return View(_DbContext.Products.ToList());
 
         }

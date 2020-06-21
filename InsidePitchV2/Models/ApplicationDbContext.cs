@@ -10,7 +10,6 @@ namespace InsidePitchV2.Models
 {
     public class ApplicationDbContext: IdentityDbContext
     {
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Product> Products { get; set; }
 

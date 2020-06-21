@@ -1,9 +1,24 @@
-﻿@{
+﻿@model IEnumerable<Product>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
     <p>Welcome to Inside Pitch, your shop for Baseball and Softball Equipment.</p>
-    <p>Put products on this page once you figure out how</p>
+
+    @foreach (Product p in this.Model)
+    {
+        @if (p.Id is 5)
+        {
+            <table>
+                <tr><th>@p.Id</th></tr>
+                <tr><th>@p.Name</th></tr>
+                <tr><th>@p.Price</th></tr>
+            </table>
+        }
+    }
+
 </div>
