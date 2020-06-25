@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+using InsidePitchV2.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -13,41 +14,36 @@ namespace InsidePitchV2.APIControllers
     [Route("api/[controller]")]
     public class RegisterController : Controller
     {
+        private readonly UserManager<IdentityUser> userManager;
 
-        private readonly IConfiguration configuration;
-
-        
-
-        // GET: api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public RegisterController(UserManager<IdentityUser> userManager)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            this.userManager = userManager;
         }
 
         // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPut]
+        public ActionResult Put(RegisterViewModel model)
         {
+            if (model.Password != model.ConfrimPassword)
+            {
+                return new UnauthorizedResult();
+            }
+
+            IdentityUser user = new IdentityUser
+            {
+
+                UserName = model.Username,
+                Email = model.Email
+
+            };
+
+            userManager.CreateAsync(user, model.Password);
+
+            return new OkResult();
+
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

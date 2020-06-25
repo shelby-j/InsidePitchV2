@@ -6,19 +6,28 @@
 
 
 document.getElementById('registerButton').addEventListener("click", e => {
-    var firstName = document.getElementById('firstName').value;
-    var lastName = document.getElementById('lastName').value;
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').checked;
     var confirmPassword = document.getElementById('confirmPassword').checked;
+
     if (password != confirmPassword) {
         document.getElementById('RegisterMessage').innerText = "Password and Confirm Password do not match.";
     }
 
-    var data = { 'firstName': firstName, 'lastName': lastName, 'username': username, 'email': email, 'password': password, 'confirmPassword': confirmPassword };
+    var data = {'username': username, 'email': email, 'password': password, 'confirmPassword': confirmPassword };
 
-    
+    var requestInfo = { 'method': 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json' }, credentials: 'same-origin' };
+    fetch('/api/Register', requestInfo)
+        .then(response => {
+            if (response.ok) {
+                document.location = '/home/SetupSecurityQuestions';
+
+            }
+            else {
+                document.getElementById('RegisterMessage').innerText = "Registration Error";
+            }
+        });
     
 
 });
