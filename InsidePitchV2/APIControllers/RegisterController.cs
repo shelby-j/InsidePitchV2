@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InsidePitchV2.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace InsidePitchV2.APIControllers
 {
     [Route("api/[controller]")]
-    public class ProductController : Controller
+    public class RegisterController : Controller
     {
-        private ApplicationDbContext _DbContext;
-        public ProductController(ApplicationDbContext dbcontext) {
-            _DbContext = dbcontext;
-        }
+
+        private readonly IConfiguration configuration;
+
+        
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IEnumerable<string> Get()
         {
-            return _DbContext.Products.ToList();
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/<controller>/5
@@ -38,22 +39,15 @@ namespace InsidePitchV2.APIControllers
         }
 
         // PUT api/<controller>/5
-        [HttpPut]
-        public void Put([FromBody] CreateProductViewModel viewModel)
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
         {
-            _DbContext.Products.Add(new Product {Name = viewModel.Name, Price = viewModel.Price });
-            _DbContext.SaveChanges();
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            
         }
     }
-}
-public class CreateProductViewModel { 
-    public string Name { get; set; }
-    public float Price { get; set; }
 }
