@@ -21,7 +21,7 @@ document.getElementById('registerButton').addEventListener("click", e => {
     fetch('/api/Register', requestInfo)
         .then(response => {
             if (response.ok) {
-                document.location = '/home/SetupSecurityQuestions';
+                document.location = '/Home/SetupSecurityQuestions';
 
             }
             else {

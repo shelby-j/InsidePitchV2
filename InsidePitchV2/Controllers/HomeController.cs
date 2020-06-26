@@ -41,6 +41,10 @@ namespace InsidePitchV2.Controllers
         {
             return View();
         }
+        public IActionResult SetupSecurityQuestions()
+        {
+            return View();
+        }
 
         public IActionResult Login()
         {

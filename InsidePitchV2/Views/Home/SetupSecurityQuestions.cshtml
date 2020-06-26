@@ -3,5 +3,21 @@
     ViewData["Title"] = "SetupSecurityQuestions";
 }
 
-<h1>SetupSecurityQuestions</h1>
+<h1>Setup Security Questions</h1>
 
+
+<br />
+<span class="bg-danger" id="RegisterQuestionsMessage"></span>
+
+<div class="form-group">
+    <label for="username">What is your mother's maiden name?</label>
+    <input type="text" class="form-control" placeholder="Enter Security Question 1" id="sq1" />
+</div>
+<div class="form-group">
+    <label for="email">What was your childhood nickname?</label>
+    <input type="text" class="form-control" placeholder="Enter Security Question 2" id="sq2" />
+</div>
+
+<br />
+<button id="registerQuestionsButton" type="submit" class="btn btn-primary">Register!</button>
+<script src="~/js/site.js"></script>
