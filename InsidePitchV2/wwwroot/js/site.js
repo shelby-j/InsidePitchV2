@@ -6,10 +6,10 @@
 
 
 document.getElementById('registerButton').addEventListener("click", e => {
-    var username = document.getElementById('username').value;
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').checked;
-    var confirmPassword = document.getElementById('confirmPassword').checked;
+    var username = document.getElementById('createUsername').value;
+    var email = document.getElementById('createEmail').value;
+    var password = document.getElementById('createPassword').value;
+    var confirmPassword = document.getElementById('createConfirmPassword').value;
 
     if (password != confirmPassword) {
         document.getElementById('RegisterMessage').innerText = "Password and Confirm Password do not match.";
@@ -29,5 +29,26 @@ document.getElementById('registerButton').addEventListener("click", e => {
             }
         });
     
+
+});
+
+
+document.getElementById('registerQuestionsButton').addEventListener("click", e => {
+    var securityQuestion1 = document.getElementById('securityQuestion1').value;
+    var securityQuestion2 = document.getElementById('securityQuestion2').value;
+
+    var data = { 'securityQuestion1': securityQuestion1, 'securityQuestion2': securityQuestion2 };
+
+    var requestInfo = { 'method': 'PUT', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin' };
+    fetch('/api/SetupSecurityQuestions', requestInfo)
+        .then(response => {
+            if (response.ok) {
+                document.location = '/Home';
+            }
+            else {
+                document.getElementById('RegisterQuestionsMessage').innerText = "Security Question Registration Error";
+            }
+        });
+
 
 });
