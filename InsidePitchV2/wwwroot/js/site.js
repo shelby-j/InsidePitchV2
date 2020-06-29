@@ -43,10 +43,32 @@ document.getElementById('registerQuestionsButton').addEventListener("click", e =
     fetch('/api/SetupSecurityQuestions', requestInfo)
         .then(response => {
             if (response.ok) {
-                document.location = '/Home';
+                document.location = '/Home/Login';
             }
             else {
                 document.getElementById('RegisterQuestionsMessage').innerText = "Security Question Registration Error";
+            }
+        });
+
+
+});
+
+document.getElementById('loginButton').addEventListener("click", e => {
+    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    var data = { 'username': username, 'email': email, 'password': password };
+
+    var requestInfo = { 'method': 'PUT', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin' };
+    fetch('/api/Login', requestInfo)
+        .then(response => {
+            if (response.ok) {
+                document.location = '/Home/LoginSecurityQuestions';
+                //Page not created yet
+            }
+            else {
+                document.getElementById('RegisterQuestionsMessage').innerText = "Login Error";
             }
         });
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace InsidePitchV2.ViewModels
 {
-    public class Class
+    public class SecurityQuestionSetupViewModel
     {
         public string securityQuestion1 { get; set; }
         public string securityQuestion2 { get; set; }

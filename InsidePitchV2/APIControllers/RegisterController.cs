@@ -21,7 +21,7 @@ namespace InsidePitchV2.APIControllers
             this.userManager = userManager;
         }
 
-        // POST api/<controller>
+        // PUT api/<controller>
         [HttpPut]
         public ActionResult Put(RegisterViewModel model)
         {

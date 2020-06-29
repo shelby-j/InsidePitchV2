@@ -12,7 +12,7 @@ namespace InsidePitchV2.APIControllers
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
-        private ApplicationDbContext _DbContext;
+        private readonly ApplicationDbContext _DbContext;
         public ProductController(ApplicationDbContext dbcontext) {
             _DbContext = dbcontext;
         }
@@ -24,12 +24,6 @@ namespace InsidePitchV2.APIControllers
             return _DbContext.Products.ToList();
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<controller>
         [HttpPost]
